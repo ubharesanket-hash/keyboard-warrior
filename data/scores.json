@@ -1,0 +1,65 @@
+[
+  {
+    "id": "seed-1",
+    "playerName": "Sensei_Sanket",
+    "wpm": 124,
+    "accuracy": 99,
+    "score": 12276,
+    "difficulty": "hard",
+    "timestamp": "2026-09-05T09:06:45.189Z"
+  },
+  {
+    "id": "seed-2",
+    "playerName": "Shadow_Fingers",
+    "wpm": 108,
+    "accuracy": 98,
+    "score": 10584,
+    "difficulty": "hard",
+    "timestamp": "2026-09-05T08:06:45.191Z"
+  },
+  {
+    "id": "seed-3",
+    "playerName": "Ruparel_Typist",
+    "wpm": 92,
+    "accuracy": 96,
+    "score": 8832,
+    "difficulty": "medium",
+    "timestamp": "2026-09-05T06:06:45.191Z"
+  },
+  {
+    "id": "seed-4",
+    "playerName": "Bliss_Warrior",
+    "wpm": 84,
+    "accuracy": 95,
+    "score": 7980,
+    "difficulty": "medium",
+    "timestamp": "2026-09-05T02:06:45.191Z"
+  },
+  {
+    "id": "seed-5",
+    "playerName": "Meme_Slayer",
+    "wpm": 76,
+    "accuracy": 92,
+    "score": 6992,
+    "difficulty": "easy",
+    "timestamp": "2026-09-04T10:06:45.191Z"
+  },
+  {
+    "id": "seed-6",
+    "playerName": "Stick_Master",
+    "wpm": 68,
+    "accuracy": 90,
+    "score": 6120,
+    "difficulty": "easy",
+    "timestamp": "2026-09-03T10:06:45.191Z"
+  },
+  {
+    "id": "score-1788602900874-sxn1v",
+    "playerName": "Sanket_Demo",
+    "wpm": 112,
+    "accuracy": 98,
+    "score": 10976,
+    "difficulty": "hard",
+    "timestamp": "2026-09-05T10:08:20.874Z"
+  }
+]

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Warrior: Stickman Typing Battle</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
+</head>
+<body>
+
+  <div id="gameContainer">
+    <!-- Top System Header Bar (matching reference screenshot) -->
+    <header class="top-nav-bar">
+      <div class="game-title-badge">
+        <span>KEYBOARD WARRIOR STICKMAN - MEME COMBO MAKER</span>
+        <span class="version-pill">v.0012(web)</span>
+      </div>
+      <div class="top-nav-actions">
+        <button id="btnMemeMaker" class="nav-btn">⚡ MEME COMBO</button>
+        <button id="btnLeaderboard" class="nav-btn">🏆 LEADERBOARD</button>
+        <button id="btnControls" class="nav-btn">⌨️ CONTROLS</button>
+        <button id="btnSoundToggle" class="nav-btn">🔊 Sound</button>
+      </div>
+    </header>
+
+    <!-- Canvas Viewport Arena -->
+    <div class="arena-wrapper">
+      <div id="fpsCounter" class="fps-badge">60 FPS</div>
+
+      <!-- Top Combat Gauges (HP + Special + Enemy Threat) -->
+      <div class="gauges-bar">
+        <div class="fighter-hp-container">
+          <div class="hp-title">
+            <span>WARRIOR (YOU)</span>
+            <span id="playerHpNum">100 HP</span>
+          </div>
+          <div class="hp-track">
+            <div id="playerHpBar" class="hp-fill"></div>
+          </div>
+        </div>
+
+        <div class="special-meter-wrap">
+          <div class="special-title">SUPER COMBO</div>
+          <div class="special-track">
+            <div id="specialBar"></div>
+          </div>
+        </div>
+
+        <div class="fighter-hp-container">
+          <div class="hp-title">
+            <span>ENEMY TYPIST</span>
+            <span id="enemyHpNum">100 HP</span>
+          </div>
+          <div class="hp-track">
+            <div id="enemyHpBar" class="hp-fill"></div>
+          </div>
+          <div class="enemy-timer-track">
+            <div id="enemyTimerBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Target Word Display (matching itch.io screenshot: [O!] AND WRITE!) -->
+      <div id="targetWordContainer">
+        <div id="targetWordBox">
+          <span class="prompt-current">PRESS ANY KEY TO START</span>
+        </div>
+      </div>
+
+      <!-- Main Canvas -->
+      <canvas id="gameCanvas" width="1024" height="576"></canvas>
+
+      <!-- Bottom Combat HUD (11 GOOD / 0 MISS / 100% / 0:09, Score, Stances) -->
+      <div class="bottom-combat-hud">
+        <div id="statsLine" class="stats-counter-line">0 GOOD / 0 MISS / 100% / 0:00 (0 WPM)</div>
+        <div id="scoreDisplay" class="score-counter-huge">000,000</div>
+
+        <div class="hud-cards-row">
+          <div class="heart-badge">❤️</div>
+          <div id="stanceCards" class="stance-cards-container">
+            <!-- Dynamically populated stance cards (TAB, 1, 2, 3, 4) -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Mechanical Keyboard Bezel Frame -->
+    <footer class="keyboard-bezel-bar">
+      <div class="bezel-brand">
+        <span>⌨️</span>
+        <strong>KeyboardWarriorStickman</strong>
+        <span style="font-size: 11px; opacity: 0.7;">Canvas 60 FPS Combat Engine</span>
+      </div>
+      <div class="bezel-controls">
+        <button id="btnFullscreen" class="bezel-btn">⛶ Fullscreen</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- College Academic Footer -->
+  <div class="college-footer">
+    MES's The D. G. Ruparel College | T.Y.B.Sc. Computer Science (2026–27) | Roll No: CS-9148 | Sanket Ananta Ubhare
+  </div>
+
+  <!-- MODAL: Create a Meme Combo (matching reference screenshot Image 2) -->
+  <div id="memeModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>⚡ Create a Meme Combo</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="meme-editor-box">
+        <label style="font-size: 12px; color: #94a3b8;">Enter custom lines to fight with (one per line):</label>
+        <textarea id="customComboInput" class="meme-textarea" spellcheck="false">TYPE TO COMBO!
+AND WRITE!
+YOUR OWN!</textarea>
+
+        <div class="preset-selector-row">
+          <span>Combo Sample:</span>
+          <button class="preset-btn" data-preset="0">1</button>
+          <button class="preset-btn" data-preset="1">2</button>
+          <button class="preset-btn" data-preset="2">3</button>
+          <button class="preset-btn" data-preset="3">4</button>
+          <button class="preset-btn" data-preset="4">5</button>
+          <button class="preset-btn" data-preset="5">6</button>
+        </div>
+
+        <div class="meme-toggle-grid">
+          <button id="btnDiffCycle" class="nav-btn" style="padding: 10px;">⚡ LINE DIFFICULTY: EASIER</button>
+          <button id="btnThemeCycle" class="nav-btn" style="padding: 10px;">⚡ BACKGROUND: FIELDS</button>
+        </div>
+
+        <button id="btnStartMemeCombo" class="action-btn-large">■ PLAY CUSTOM COMBO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Leaderboard -->
+  <div id="leaderboardModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 640px;">
+      <div class="modal-header">
+        <h2>🏆 Hall of Keyboard Warriors</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Warrior</th>
+            <th>Score</th>
+            <th>WPM</th>
+            <th>Accuracy</th>
+            <th>Tier</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardList">
+          <!-- Dynamically populated from /api/leaderboard -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MODAL: Controls & Combat Guide -->
+  <div id="controlsModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>⌨️ Game Controls & Combat Mechanics</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div style="font-size: 13px; line-height: 1.6; display: flex; flex-direction: column; gap: 10px;">
+        <p><strong>🎯 Touch-Typing Combat:</strong> Type the highlighted letters in the prompt box above the fighters. Completing a word slashes the enemy!</p>
+        <p><strong>🔥 Combo Multiplier:</strong> Consecutive error-free words build your streak. Multiplier = <code>min(1 + floor(streak/3)*0.25, 3.0)</code>.</p>
+        <p><strong>🛡️ Stance Cards:</strong></p>
+        <ul style="margin-left: 20px;">
+          <li><code>TAB</code>: Guard / Parry - Completely negates incoming enemy hit</li>
+          <li><code>1</code>: Swift Katana - Fast low-cooldown blade slice</li>
+          <li><code>2</code>: Rising Strike - High damage launching uppercut</li>
+          <li><code>3</code>: Heavy Cleave - Devastating single cleave shockwave</li>
+          <li><code>4</code>: Zen Focus - Temporarily slows down the enemy attack timer</li>
+        </ul>
+        <p><strong>⚡ Adaptive Difficulty:</strong> Staying above 92% accuracy and 50+ WPM promotes you to harder tiers with bigger point bonuses!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Match End / Summary Screen -->
+  <div id="matchEndModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="matchResultTitle" class="result-win">🏆 VICTORY!</h2>
+      </div>
+      <div class="summary-stats-grid">
+        <div class="stat-box">
+          <span class="stat-label">Typing Speed</span>
+          <span id="summaryWpm" class="stat-val">0 WPM</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Accuracy</span>
+          <span id="summaryAccuracy" class="stat-val">100%</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Total Score</span>
+          <span id="summaryScore" class="stat-val">0</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Max Streak</span>
+          <span id="summaryStreak" class="stat-val">0</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Battle Duration</span>
+          <span id="summaryTime" class="stat-val">0:00</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Difficulty Tier</span>
+          <span id="summaryTier" class="stat-val">EASY</span>
+        </div>
+      </div>
+
+      <div class="submit-score-row">
+        <input type="text" id="playerNameInput" class="submit-input" placeholder="Enter warrior codename..." maxlength="18" value="Sanket">
+        <button id="btnSubmitScore" class="action-btn-large" style="padding: 8px 18px; font-size: 14px;">Submit Score</button>
+      </div>
+
+      <button id="btnPlayAgain" class="action-btn-large" style="background: #2563eb; margin-top: 8px;">⚔️ Play Again</button>
+    </div>
+  </div>
+
+  <!-- Entry Script -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
