@@ -61,5 +61,41 @@
     "score": 10976,
     "difficulty": "hard",
     "timestamp": "2026-09-05T10:08:20.874Z"
+  },
+  {
+    "id": "score-1788603466448-w7fy1",
+    "playerName": "Sanket",
+    "wpm": 25,
+    "accuracy": 98,
+    "score": 1454,
+    "difficulty": "easy",
+    "timestamp": "2026-09-05T10:17:46.447Z"
+  },
+  {
+    "id": "score-1788755093046-jx88b",
+    "playerName": "Sanket",
+    "wpm": 0,
+    "accuracy": 100,
+    "score": 0,
+    "difficulty": "easy",
+    "timestamp": "2026-09-07T04:24:53.045Z"
+  },
+  {
+    "id": "score-1788758526427-1defh",
+    "playerName": "Sanket",
+    "wpm": 25,
+    "accuracy": 86,
+    "score": 1197,
+    "difficulty": "easy",
+    "timestamp": "2026-09-07T05:22:06.425Z"
+  },
+  {
+    "id": "score-1788759260653-dea95",
+    "playerName": "Sanket_Demo",
+    "wpm": 112,
+    "accuracy": 98,
+    "score": 10976,
+    "difficulty": "hard",
+    "timestamp": "2026-09-07T05:34:20.653Z"
   }
 ]
